@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phoenix Modern | Valley Learning Foundation of Arizona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:    #F7F0E6;
+      --cream:   #FDF8F2;
+      --warm1:   #E07B39;
+      --warm2:   #C45D1E;
+      --teal:    #2C7873;
+      --teal2:   #1E5552;
+      --navy:    #1A3A4A;
+      --text:    #2D2D2D;
+      --muted:   #6B6B6B;
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text); background: var(--cream); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 40px; height: 40px; background: var(--warm1); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .nav-logo-text { font-family: 'Merriweather', serif; font-size: 1rem; font-weight: 700; color: var(--teal2); line-height: 1.2; }
+    .nav-logo-text span { display: block; font-size: 0.68rem; font-weight: 400; color: var(--muted); font-family: 'Open Sans', sans-serif; }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 600; color: var(--text); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--warm1); }
+    .nav-cta { background: var(--warm1); color: var(--white) !important; padding: 8px 20px; border-radius: 50px; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--warm2) !important; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(26,58,74,0.92) 0%, rgba(44,120,115,0.80) 55%, rgba(224,123,57,0.65) 100%),
+        url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center; padding: 100px 5% 60px;
+    }
+    .hero-content { max-width: 680px; color: var(--white); }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50px; padding: 6px 18px; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 22px;
+    }
+    .hero-content h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .hero-tagline {
+      font-family: 'Merriweather', serif; font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.3rem); opacity: 0.85; margin-bottom: 20px;
+      color: #FFD29E;
+    }
+    .hero-content p { font-size: 1rem; opacity: 0.88; max-width: 580px; margin-bottom: 36px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--warm1); color: var(--white); padding: 14px 30px;
+      border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--warm2); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white); padding: 14px 30px; border-radius: 50px;
+      border: 2px solid rgba(255,255,255,0.7); text-decoration: none;
+      font-weight: 700; font-size: 0.95rem; transition: background 0.2s, transform 0.2s; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+    /* ── STATS ── */
+    .stats-band {
+      background: var(--teal); color: var(--white);
+      display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    .stat-item {
+      padding: 28px 46px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Merriweather', serif; font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 0.8rem; opacity: 0.85; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 90px 5%; }
+    .section-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm1); margin-bottom: 10px; }
+    .section-title { font-family: 'Merriweather', serif; font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--teal2); line-height: 1.3; margin-bottom: 16px; }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 600px; margin-bottom: 48px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .about-img { border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.12); position: relative; }
+    .about-img img { width: 100%; height: 440px; object-fit: cover; display: block; }
+    .about-badge {
+      position: absolute; bottom: 20px; left: 20px;
+      background: var(--teal2); color: var(--white); border-radius: 12px;
+      padding: 12px 18px; font-size: 0.82rem; font-weight: 600; line-height: 1.4;
+    }
+    .mv-block {
+      background: var(--sand); border-left: 4px solid var(--warm1);
+      border-radius: 0 12px 12px 0; padding: 18px 22px; margin-bottom: 22px;
+    }
+    .mv-block h4 { color: var(--warm2); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; font-weight: 700; }
+    .mv-block p { font-size: 0.93rem; font-style: italic; color: var(--text); line-height: 1.6; }
+
+    /* Core Values */
+    .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .value-card {
+      background: var(--sand); border-radius: 12px; padding: 16px 18px;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .value-icon { font-size: 22px; margin-top: 2px; flex-shrink: 0; }
+    .value-card strong { display: block; font-size: 0.88rem; color: var(--teal2); margin-bottom: 3px; }
+    .value-card span { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── PHILOSOPHY ── */
+    #philosophy { background: var(--navy); color: var(--white); }
+    .philosophy-inner { max-width: 1100px; margin: 0 auto; }
+    #philosophy .section-label { color: #FFD29E; }
+    #philosophy .section-title { color: var(--white); }
+    #philosophy .section-sub { color: rgba(255,255,255,0.75); }
+    .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .principle-card {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px; padding: 28px 24px;
+      transition: background 0.25s;
+    }
+    .principle-card:hover { background: rgba(255,255,255,0.12); }
+    .principle-num {
+      font-family: 'Merriweather', serif; font-size: 2rem; font-weight: 700;
+      color: var(--warm1); line-height: 1; margin-bottom: 12px;
+    }
+    .principle-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .principle-card p { font-size: 0.88rem; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+    /* ── STUDIOS ── */
+    #studios { background: var(--sand); }
+    .studios-inner { max-width: 1100px; margin: 0 auto; }
+    .studios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .studio-card {
+      background: var(--white); border-radius: 16px; padding: 30px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+      border-top: 4px solid var(--teal);
+    }
+    .studio-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.10); }
+    .studio-grades {
+      display: inline-block; background: rgba(44,120,115,0.1); color: var(--teal2);
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 4px 12px; border-radius: 50px; margin-bottom: 12px;
+    }
+    .studio-card h3 { font-family: 'Merriweather', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 10px; }
+    .studio-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .studio-programs { margin-top: 14px; padding-top: 14px; border-top: 1px solid #EDE8E0; }
+    .studio-programs span {
+      display: inline-block; font-size: 0.74rem; background: var(--sand);
+      color: var(--muted); padding: 3px 10px; border-radius: 50px; margin: 3px 3px 0 0;
+      font-weight: 600;
+    }
+
+    /* ── APPROACH ── */
+    #approach { background: var(--white); }
+    .approach-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .approach-cards { display: flex; flex-direction: column; gap: 18px; }
+    .approach-card { display: flex; gap: 18px; align-items: flex-start; }
+    .approach-icon {
+      width: 46px; height: 46px; border-radius: 12px; background: rgba(224,123,57,0.1);
+      color: var(--warm1); display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .approach-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--teal2); margin-bottom: 5px; }
+    .approach-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .approach-img { border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .approach-img img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+    /* ── LEADERSHIP ── */
+    #leadership { background: var(--sand); }
+    .leadership-inner { max-width: 1100px; margin: 0 auto; }
+    .leadership-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .leader-card {
+      background: var(--white); border-radius: 16px; padding: 28px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .leader-role {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--warm1); margin-bottom: 6px;
+    }
+    .leader-card h3 { font-family: 'Merriweather', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .leader-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: start; }
+    .contact-info h3 { font-family: 'Merriweather', serif; font-size: 1.4rem; color: var(--teal2); margin-bottom: 12px; }
+    .contact-info p { color: var(--muted); font-size: 0.95rem; margin-bottom: 28px; line-height: 1.65; }
+    .contact-details { display: flex; flex-direction: column; gap: 18px; }
+    .contact-detail { display: flex; gap: 14px; align-items: flex-start; }
+    .contact-detail-icon { width: 40px; height: 40px; background: var(--warm1); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; margin-top: 2px; }
+    .contact-detail-text strong { display: block; font-size: 0.82rem; color: var(--text); font-weight: 700; }
+    .contact-detail-text span { font-size: 0.88rem; color: var(--muted); }
+    .contact-detail-text a { color: var(--teal); text-decoration: none; font-size: 0.88rem; }
+    .contact-detail-text a:hover { color: var(--warm1); }
+    form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { font-size: 0.8rem; font-weight: 600; color: var(--text); display: block; margin-bottom: 5px; }
+    input, textarea, select {
+      width: 100%; padding: 12px 16px; border: 1px solid #D8CCB8; border-radius: 10px;
+      font-family: 'Open Sans', sans-serif; font-size: 0.92rem; color: var(--text);
+      background: var(--white); transition: border-color 0.2s; outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--warm1); }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      background: var(--teal); color: var(--white); border: none; padding: 14px 36px;
+      border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.2s; align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--teal2); transform: translateY(-2px); }
+
+    /* ── ENROLL BANNER ── */
+    .enroll-banner {
+      background: linear-gradient(135deg, var(--warm1), var(--warm2));
+      color: var(--white); text-align: center; padding: 60px 5%;
+    }
+    .enroll-banner h2 { font-family: 'Merriweather', serif; font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: 14px; }
+    .enroll-banner p { font-size: 1rem; opacity: 0.9; max-width: 560px; margin: 0 auto 30px; }
+    .enroll-banner a {
+      display: inline-block; background: var(--white); color: var(--warm2);
+      padding: 14px 36px; border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+    }
+    .enroll-banner a:hover { opacity: 0.92; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--teal2); color: rgba(255,255,255,0.82); padding: 50px 5% 28px; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand h3 { font-family: 'Merriweather', serif; color: white; font-size: 1.05rem; margin-bottom: 8px; }
+    .footer-brand .footer-sub { font-size: 0.8rem; opacity: 0.65; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 320px; }
+    .footer-col h4 { color: white; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; flex-wrap: wrap; gap: 10px; }
+    .footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-bottom a:hover { color: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .about-grid, .approach-inner, .contact-inner, .footer-top { grid-template-columns: 1fr; }
+      .principles-grid { grid-template-columns: 1fr 1fr; }
+      .leadership-grid { grid-template-columns: 1fr 1fr; }
+      .studios-grid { grid-template-columns: 1fr; }
+      .about-img img, .approach-img img { height: 280px; }
+      .stat-item { padding: 22px 28px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .principles-grid, .leadership-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-btns { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">
+      <div class="nav-logo-icon">🌵</div>
+      <div class="nav-logo-text">
+        Phoenix Modern
+        <span>Valley Learning Foundation of Arizona</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#studios">Studios</a></li>
+      <li><a href="#approach">Our Approach</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-content">
+      <div class="hero-tag">🌱 Charter School · Kindergarten – Grade 8 · Central Phoenix</div>
+      <h1>Every Child is Capable, Competent &amp; Ready to Learn</h1>
+      <p class="hero-tagline">Creative Thinkers. Inspired Doers.</p>
+      <p>Phoenix Modern is a learner-centered charter school in Central Phoenix, operated by Valley Learning Foundation of Arizona. We place student agency, curiosity, and joy at the heart of every learning experience.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Enroll Your Child</a>
+        <a href="#about" class="btn-outline">Our Mission &amp; Vision</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-band">
+    <div class="stat-item">
+      <div class="stat-num">126+</div>
+      <div class="stat-label">Students Enrolled</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">K–8</div>
+      <div class="stat-label">Grades Served</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Core Values</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">501(c)(3)</div>
+      <div class="stat-label">Nonprofit Foundation</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80" alt="Students at Phoenix Modern" />
+        <div class="about-badge">📍 200 E Mitchell Dr<br>Phoenix, AZ 85012</div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">About Phoenix Modern</span>
+        <h2 class="section-title">Rooted in Wonder. Built for Growth.</h2>
+
+        <div class="mv-block">
+          <h4>Our Mission</h4>
+          <p>"To support a diverse community of learners in developing the skills, mindset and character that best prepare them for positive, healthy and productive engagement in the world."</p>
+        </div>
+        <div class="mv-block">
+          <h4>Our Vision</h4>
+          <p>"A community of learners driven by an innate sense of wonder, where children experience joy and loving relationships, and the learning approach is designed to support a lifetime of growth."</p>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">✨</div>
+            <div>
+              <strong>Wonder</strong>
+              <span>Spark curiosity and exploration through open-ended discovery</span>
+            </div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">❤️</div>
+            <div>
+              <strong>Love</strong>
+              <span>Every learner feels seen, heard, and supported as an individual</span>
+            </div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌟</div>
+            <div>
+              <strong>Joy</strong>
+              <span>Learning is a joyful journey through play, projects, and discovery</span>
+            </div>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🌱</div>
+            <div>
+              <strong>Growth</strong>
+              <span>Whole-child development across academics, personal, and social dimensions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="philosophy-inner">
+      <span class="section-label">Our Educational Philosophy</span>
+      <h2 class="section-title">A Learner-Centered, Whole-Child Model</h2>
+      <p class="section-sub">Phoenix Modern rejects the one-size-fits-all "batch processing" model of education. Instead, we place student agency, curiosity, and intrinsic motivation at the center of every learning experience.</p>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-num">01</div>
+          <h3>Learner Agency &amp; Self-Direction</h3>
+          <p>Students make meaningful choices in how they engage with content, take on real responsibilities, and explore their passions within structured academic frameworks. One-on-one accountability coaching develops self-awareness and executive function.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">02</div>
+          <h3>Mastery-Based Progression</h3>
+          <p>Learners earn mastery-based badges reflecting deep learning and perseverance — only awarded after demonstrating a challenging set of criteria at mastery level. No learner advances before genuinely internalizing core concepts.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">03</div>
+          <h3>Whole-Child Development</h3>
+          <p>Our framework encompasses four domains: Academic Skills, Wellness (emotional intelligence and physical health), Processing (critical thinking), and Wayfinding (resilience, adaptability, and decision-making).</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">04</div>
+          <h3>Mixed-Age Learning Communities</h3>
+          <p>Multi-age studios (K–1, 2–3, 4–5, 6–8) reflect research showing children learn powerfully from peers at different developmental stages, enabling natural differentiation without stigma.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">05</div>
+          <h3>Curiosity &amp; Experiential Learning</h3>
+          <p>The Quest program delivers immersive, interdisciplinary, learner-driven projects in science and social studies — challenging learners to solve real-world problems and connect academic content to their community.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-num">06</div>
+          <h3>The Guide Model</h3>
+          <p>Teachers are called "Guides" — a deliberate choice. A Guide's role is to design the conditions in which learners discover, construct, and apply knowledge themselves, rather than transmitting information directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIOS -->
+  <section id="studios">
+    <div class="studios-inner">
+      <span class="section-label">Our Learning Environments</span>
+      <h2 class="section-title">Multi-Age Studios</h2>
+      <p class="section-sub">Phoenix Modern organizes learning in multi-age studios rather than traditional single-grade classrooms. Each studio is designed to meet learners developmentally and build increasing independence and rigor.</p>
+      <div class="studios-grid">
+        <div class="studio-card">
+          <div class="studio-grades">Kindergarten – Grade 1</div>
+          <h3>Foundations Studio</h3>
+          <p>Focuses on early literacy, numeracy, and independent learning habits. Learners build the foundational skills — reading, writing, and math reasoning — through structured programs and learner-driven Quest experiences.</p>
+          <div class="studio-programs">
+            <span>Bookworms</span><span>Takeoff</span><span>Amira Learning</span><span>Lexia Core5</span><span>IXL</span>
+          </div>
+        </div>
+        <div class="studio-card">
+          <div class="studio-grades">Grades 2–3</div>
+          <h3>Primary Studio</h3>
+          <p>Emphasizes reading comprehension, written expression, and mathematical reasoning. Learners engage in sustained academic work for a minimum of two hours daily, deepening mastery and collaborative learning.</p>
+          <div class="studio-programs">
+            <span>Bookworms</span><span>Takeoff</span><span>Amira Learning</span><span>Lexia Core5</span><span>IXL</span>
+          </div>
+        </div>
+        <div class="studio-card">
+          <div class="studio-grades">Grades 4–5</div>
+          <h3>Elementary Studio</h3>
+          <p>Increases academic rigor and promotes leadership and responsibility. Learners engage in a minimum of three hours of focused academic work daily, with emphasis on complex text analysis, written communication, and collaborative problem-solving.</p>
+          <div class="studio-programs">
+            <span>Bookworms</span><span>Takeoff</span><span>IXL</span><span>Amira Learning</span><span>Lexia Core5</span>
+          </div>
+        </div>
+        <div class="studio-card">
+          <div class="studio-grades">Grades 6–8</div>
+          <h3>Middle School Studio</h3>
+          <p>Prepares learners for high school through rigorous expectations and increasing autonomy. Focus on critical thinking, evidence-based writing, and application across disciplines with clear college and career readiness goals.</p>
+          <div class="studio-programs">
+            <span>Zearn</span><span>CommonLit</span><span>IXL</span><span>Quest Projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="approach-inner">
+      <div>
+        <span class="section-label">How We Teach</span>
+        <h2 class="section-title">Three Core Learning Approaches</h2>
+        <p class="section-sub" style="margin-bottom: 32px;">Every day at Phoenix Modern weaves together three interconnected learning experiences designed to develop the whole child.</p>
+        <div class="approach-cards">
+          <div class="approach-card">
+            <div class="approach-icon">🏋️</div>
+            <div>
+              <h4>Learner-Driven Academic Workshops</h4>
+              <p>Structured learning blocks where learners work at their own pace using advanced adaptive tools to earn mastery-based badges. Guides use real-time data to adjust individual learning plans weekly.</p>
+            </div>
+          </div>
+          <div class="approach-card">
+            <div class="approach-icon">🔭</div>
+            <div>
+              <h4>Experiential Learning Through Quests</h4>
+              <p>Immersive, interdisciplinary, learner-driven projects in science and social studies. Learners investigate real-world questions, collaborate across age groups, and present findings to authentic audiences.</p>
+            </div>
+          </div>
+          <div class="approach-card">
+            <div class="approach-icon">🤝</div>
+            <div>
+              <h4>Character &amp; Community Practice</h4>
+              <p>Daily Circles and mixed-age collaboration build listening, perspective-taking, conflict resolution, accountability, and civic identity — developing the whole child, not just academic skills.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="approach-img">
+        <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80" alt="Students collaborating at Phoenix Modern" />
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section id="leadership">
+    <div class="leadership-inner">
+      <span class="section-label">Our People</span>
+      <h2 class="section-title">Leadership &amp; Governing Board</h2>
+      <p class="section-sub">Valley Learning Foundation of Arizona is governed by a five-member board with complementary expertise in nonprofit management, education, finance, charter school operations, and curriculum oversight.</p>
+      <div class="leadership-grid">
+        <div class="leader-card">
+          <div class="leader-role">Interim Board Chair</div>
+          <h3>Jessica Weissbuch</h3>
+          <p>Licensed Marriage and Family Therapist and nonprofit executive with 15+ years of experience. Founder and Executive Director of Brave Trails, a nationally recognized $2M nonprofit. Expertise in internal financial controls, board-level fiscal transparency, and capital campaigns.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-role">Interim Board Vice Chair</div>
+          <h3>Aaron Harris</h3>
+          <p>Strategic executive with 16+ years in enterprise growth, operational modernization, and performance governance. Currently leading national revenue strategy for LetterStream and founding partner of Tandem, an AI-enabled growth architecture firm.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-role">Interim Board Secretary</div>
+          <h3>Shannon Gallagher</h3>
+          <p>Operations executive with 15+ years in mission-driven organizations including education and EdTech. Co-founder of a charter high school that grew into a six-school network, with expertise in state reporting, student recruitment, and internal controls.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-role">Board Member · Finance</div>
+          <h3>Larry Curran</h3>
+          <p>Entrepreneurial education leader and finance executive with 30+ years of experience. Former Arizona State-Licensed School Operator. Manages nearly $500M in private credit with deep expertise in USFR, risk management, and internal controls.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-role">Board Member · Academic Liaison</div>
+          <h3>Jessica Taylor</h3>
+          <p>Experienced educator, instructional leader, and former charter school governing board member. Founding member of Phoenix Modern's instructional team. Holds an M.Ed. in Educational Leadership from ASU and is pursuing a Master's in Montessori Education.</p>
+        </div>
+        <div class="leader-card">
+          <div class="leader-role">Executive Director</div>
+          <h3>Nikol Carlson</h3>
+          <p>Innovative education executive with 6+ years of leadership experience. Currently serving as School Director at Phoenix Modern, transitioning to Executive Director under VLFA with full-time, daily, on-site leadership. Holds an MA in Educational Leadership and background as a Special Education Teacher.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENROLL BANNER -->
+  <div class="enroll-banner">
+    <h2>Ready to Join the Phoenix Modern Community?</h2>
+    <p>Phoenix Modern serves learners in Central Phoenix in Kindergarten through Grade 8. We welcome families who believe every child deserves a learning environment built around their unique strengths and curiosity.</p>
+    <a href="#contact">Start Your Enrollment →</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <span class="section-label">Get In Touch</span>
+        <h3>We'd Love to Hear From You</h3>
+        <p>Whether you're interested in enrollment, have questions about our programs, or want to learn more about Valley Learning Foundation of Arizona, we're here to help.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📍</div>
+            <div class="contact-detail-text">
+              <strong>School Address</strong>
+              <span>200 E Mitchell Dr, Phoenix, AZ 85012</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">✉️</div>
+            <div class="contact-detail-text">
+              <strong>School Email</strong>
+              <a href="mailto:discover@phoenixmodern.org">discover@phoenixmodern.org</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📬</div>
+            <div class="contact-detail-text">
+              <strong>Foundation Email</strong>
+              <a href="mailto:ValleylearningfoundationofAZ@gmail.com">ValleylearningfoundationofAZ@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🏫</div>
+            <div class="contact-detail-text">
+              <strong>Grades Served</strong>
+              <span>Kindergarten – Grade 8</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📋</div>
+            <div class="contact-detail-text">
+              <strong>Authorizer</strong>
+              <span>Arizona State Board for Charter Schools (ASBCS)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Jane" />
+          </div>
+          <div>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" />
+          </div>
+        </div>
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@example.com" />
+        </div>
+        <div>
+          <label for="subject">I'm interested in…</label>
+          <select id="subject">
+            <option value="">Select a topic</option>
+            <option>Enrolling My Child</option>
+            <option>School Tour / Visit</option>
+            <option>Learning About Our Programs</option>
+            <option>Volunteering or Partnerships</option>
+            <option>Foundation / VLFA Inquiries</option>
+            <option>Media &amp; Press</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us how we can help, or ask us anything about Phoenix Modern…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>🌵 Phoenix Modern</h3>
+        <div class="footer-sub">Operated by Valley Learning Foundation of Arizona · 501(c)(3) Nonprofit</div>
+        <p>A learner-centered, whole-child K–8 charter school in Central Phoenix. Authorized by the Arizona State Board for Charter Schools (ASBCS). Creative Thinkers. Inspired Doers.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About &amp; Mission</a></li>
+          <li><a href="#philosophy">Our Philosophy</a></li>
+          <li><a href="#studios">Learning Studios</a></li>
+          <li><a href="#approach">Our Approach</a></li>
+          <li><a href="#leadership">Leadership</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Families</h4>
+        <ul>
+          <li><a href="#contact">Enroll Your Child</a></li>
+          <li><a href="#contact">Schedule a Tour</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="mailto:discover@phoenixmodern.org">discover@phoenixmodern.org</a></li>
+          <li><a href="mailto:ValleylearningfoundationofAZ@gmail.com">VLFA Foundation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Valley Learning Foundation of Arizona · Phoenix Modern Charter School. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="#">ASBCS Authorized</a> &nbsp;·&nbsp;
+        <a href="#">200 E Mitchell Dr, Phoenix AZ 85012</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth nav active link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) current = s.getAttribute('id'); });
+      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--warm1)' : ''; });
+    });
+
+    // Form submit feedback
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = 'var(--teal)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
