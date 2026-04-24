@@ -34,8 +34,18 @@
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo-icon {
-      width: 40px; height: 40px; background: var(--warm1); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 20px;
+      width: 42px; height: 42px; border-radius: 50%;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--white);
+      border: 1px solid rgba(224,123,57,0.22);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+    .nav-logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .nav-logo-text { font-family: 'Merriweather', serif; font-size: 1rem; font-weight: 700; color: var(--teal2); line-height: 1.2; }
     .nav-logo-text span { display: block; font-size: 0.68rem; font-weight: 400; color: var(--muted); font-family: 'Open Sans', sans-serif; }
@@ -44,6 +54,19 @@
     .nav-links a:hover { color: var(--warm1); }
     .nav-cta { background: var(--warm1); color: var(--white) !important; padding: 8px 20px; border-radius: 50px; transition: background 0.2s !important; }
     .nav-cta:hover { background: var(--warm2) !important; }
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(45,45,45,0.14);
+      background: rgba(255,255,255,0.94);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
 
     /* ── HERO ── */
     #home {
@@ -274,11 +297,30 @@
       .stat-item:last-child { border-bottom: none; }
     }
     @media (max-width: 600px) {
+      nav { align-items: center; flex-wrap: wrap; gap: 10px; height: auto; min-height: 70px; padding: 12px 5%; }
+      .nav-toggle { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(45,45,45,0.08);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li + li { border-top: 1px solid rgba(45,45,45,0.08); }
+      .nav-links a { display: block; padding: 14px 16px; }
+      section { padding: 64px 5%; }
+      #home { padding: 104px 5% 40px; }
+      .hero-content h1 { font-size: clamp(1.95rem, 10vw, 2.9rem); line-height: 1.08; }
+      .hero-content p, .section-sub { font-size: 0.95rem; }
       .principles-grid, .leadership-grid { grid-template-columns: 1fr; }
       .values-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
       .hero-btns { flex-direction: column; }
+      .hero-btns a { width: 100%; text-align: center; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
     }
@@ -289,19 +331,20 @@
   <!-- NAV -->
   <nav>
     <a href="#home" class="nav-logo">
-      <div class="nav-logo-icon">🌵</div>
+      <div class="nav-logo-icon"><img src="vlfa-logo.jpg" alt="Valley Learning Foundation of Arizona logo" /></div>
       <div class="nav-logo-text">
         Phoenix Modern
         <span>Valley Learning Foundation of Arizona</span>
       </div>
     </a>
-    <ul class="nav-links">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <ul class="nav-links" id="site-nav">
       <li><a href="#about">About</a></li>
       <li><a href="#studios">Studios</a></li>
       <li><a href="#approach">Our Approach</a></li>
       <li><a href="#leadership">Leadership</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+      <li><a href="giving.html" class="nav-cta">Donate</a></li>
     </ul>
   </nav>
 
@@ -314,6 +357,7 @@
       <p>Phoenix Modern is a learner-centered charter school in Central Phoenix, operated by Valley Learning Foundation of Arizona. We place student agency, curiosity, and joy at the heart of every learning experience.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn-primary">Enroll Your Child</a>
+        <a href="giving.html" class="btn-outline">Support Our Mission</a>
         <a href="#about" class="btn-outline">Our Mission &amp; Vision</a>
       </div>
     </div>
@@ -683,6 +727,21 @@
   </footer>
 
   <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-links');
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
     // Smooth nav active link on scroll
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
