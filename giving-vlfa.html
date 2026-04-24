@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giving | Valley Learning Foundation of Arizona</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand: #F4EAE2;
+      --cream: #FBF7F2;
+      --warm1: #C97754;
+      --warm2: #B76543;
+      --teal: #5F705F;
+      --teal2: #48514A;
+      --navy: #48514A;
+      --text: #48514A;
+      --muted: #6E756F;
+      --white: #FFFFFF;
+      --line: #E4D6CA;
+      --tan: #DDA57E;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', sans-serif; color: var(--text); background: var(--cream); line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid rgba(72,81,74,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--white);
+      border: 1px solid rgba(201,119,84,0.2);
+      box-shadow: 0 8px 16px rgba(72,81,74,0.08);
+    }
+    .nav-logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .nav-logo-text { font-family: 'Merriweather', serif; font-size: 0.98rem; font-weight: 700; color: var(--teal2); line-height: 1.2; letter-spacing: 0.04em; }
+    .nav-logo-text span { display: block; font-size: 0.66rem; font-weight: 600; color: var(--warm1); font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.16em; }
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.86rem; font-weight: 600; color: var(--text); transition: color 0.2s; font-family: 'Poppins', sans-serif; letter-spacing: 0.04em; }
+    .nav-links a:hover, .nav-links a.active { color: var(--warm1); }
+    .nav-cta { background: var(--warm1); color: var(--white) !important; padding: 10px 22px; border-radius: 999px; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--warm2) !important; }
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(72,81,74,0.14);
+      background: rgba(255,255,255,0.92);
+      color: var(--teal2);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .giving-hero {
+      min-height: auto;
+      background:
+        linear-gradient(180deg, rgba(244,234,226,0.96) 0%, rgba(255,255,255,0.95) 100%);
+      padding: 120px 5% 56px;
+      display: flex;
+      align-items: center;
+    }
+    .hero-shell {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .hero-copy { color: var(--text); }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(95,112,95,0.08); border: 1px solid rgba(95,112,95,0.16);
+      border-radius: 999px; padding: 8px 16px; font-size: 0.76rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 22px;
+      color: var(--teal);
+      font-family: 'Poppins', sans-serif;
+    }
+    .hero-copy-inner {
+      padding-top: 22px;
+    }
+    .hero-copy h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+    .nowrap { white-space: nowrap; }
+    .hero-copy p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 860px;
+      margin-bottom: 20px;
+    }
+    .hero-points {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 24px;
+      max-width: 820px;
+    }
+    .hero-points li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 600;
+    }
+    .hero-points li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--warm1);
+      margin-top: 9px;
+      flex-shrink: 0;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+    .btn-primary, .btn-outline {
+      display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+      padding: 14px 28px; border-radius: 999px; transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      font-family: 'Poppins', sans-serif; letter-spacing: 0.04em;
+    }
+    .btn-primary { background: var(--warm1); color: var(--white); }
+    .btn-primary:hover { background: var(--warm2); transform: translateY(-2px); }
+    .btn-outline { color: var(--teal2); border: 2px solid rgba(95,112,95,0.22); background: rgba(255,255,255,0.72); }
+    .btn-outline:hover { background: rgba(95,112,95,0.08); transform: translateY(-2px); }
+
+    .hero-subpanel {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+    .video-panel {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(72,81,74,0.08);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(72,81,74,0.12);
+    }
+    .panel-kicker {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--warm1);
+      margin-bottom: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .video-frame {
+      position: relative;
+      padding-top: 62%;
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(244,234,226,0.55);
+      border: 1px solid rgba(201,119,84,0.14);
+    }
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--teal2);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-sub { font-size: 1rem; color: var(--muted); max-width: 860px; margin-bottom: 34px; }
+    .section-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .stats-band {
+      background: var(--teal);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      padding: 28px 42px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Merriweather', serif; font-size: 2.1rem; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 0.78rem; opacity: 0.88; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    #why-give { background: var(--white); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .story-card, .pull-quote {
+      background: var(--sand);
+      border-radius: 18px;
+      padding: 28px;
+      border: 1px solid rgba(201,119,84,0.12);
+    }
+    .story-card p + p { margin-top: 16px; }
+    .pull-quote {
+      background: linear-gradient(180deg, rgba(221,165,126,0.22) 0%, rgba(244,234,226,0.95) 100%);
+      border-left: 4px solid var(--warm1);
+    }
+    .pull-quote strong {
+      display: block;
+      color: var(--teal2);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .pull-quote p {
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--navy);
+    }
+
+    #accountability { background: var(--navy); color: var(--white); }
+    #accountability .section-title { color: var(--white); }
+    #accountability .section-sub { color: rgba(255,255,255,0.75); }
+    #accountability .section-label { color: var(--tan); }
+    .accountability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .trust-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 28px;
+    }
+    .trust-card h3 {
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .trust-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.92rem;
+    }
+
+    #voices { background: var(--cream); }
+    .voices-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .quote-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+      border: 1px solid rgba(26,58,74,0.06);
+    }
+    .quote-card p {
+      font-family: 'Merriweather', serif;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+    .quote-card strong {
+      display: block;
+      color: var(--teal2);
+      font-size: 0.92rem;
+      margin-bottom: 3px;
+    }
+    .quote-card span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    #impact { background: var(--white); }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .impact-card {
+      background: var(--sand);
+      border-radius: 18px;
+      padding: 30px 28px;
+      border-top: 4px solid var(--warm1);
+    }
+    .impact-card h3 {
+      font-family: 'Merriweather', serif;
+      color: var(--navy);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+    .impact-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    #give {
+      background:
+        linear-gradient(135deg, rgba(221,165,126,0.14) 0%, rgba(95,112,95,0.08) 100%),
+        var(--cream);
+    }
+    .donate-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 420px) minmax(0, 700px);
+      gap: 28px;
+      align-items: start;
+      justify-content: center;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .donate-copy {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(72,81,74,0.08);
+      width: 100%;
+      margin: 0;
+      border: 1px solid rgba(26,58,74,0.06);
+      align-self: start;
+    }
+    .donate-copy p + p { margin-top: 16px; }
+    .donate-copy .eyebrow {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm1);
+      margin-bottom: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .donate-copy h3 {
+      font-family: 'Merriweather', serif;
+      color: var(--teal2);
+      font-size: 1.45rem;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .donate-copy p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      max-width: none;
+    }
+    .donate-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 24px;
+    }
+    .form-pointer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-top: 14px;
+      margin-left: 30px;
+      color: var(--teal2);
+      font-weight: 700;
+      font-size: 0.95rem;
+      width: auto;
+      text-align: left;
+    }
+    .form-pointer .arrow {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .embed-shell { align-self: start; }
+    .embed-shell {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+      max-width: 700px;
+      width: min(100%, 700px);
+      margin: 0 auto;
+    }
+    .embed-frame {
+      position: relative;
+      min-height: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+      display: block;
+      width: 100%;
+    }
+    .embed-frame iframe,
+    .embed-frame dbox-widget {
+      width: 100%;
+      height: 100%;
+    }
+    .embed-frame dbox-widget {
+      display: block;
+      overflow: hidden;
+      background: transparent;
+      min-width: 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #other-ways { background: var(--white); }
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .help-card {
+      border: 1px solid rgba(26,58,74,0.08);
+      border-radius: 18px;
+      padding: 28px;
+      background: var(--cream);
+    }
+    .help-card h3 {
+      font-size: 1rem;
+      color: var(--teal2);
+      margin-bottom: 10px;
+    }
+    .help-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .closing-banner {
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      color: var(--white);
+      text-align: center;
+      padding: 60px 5%;
+    }
+    .closing-banner h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      margin-bottom: 12px;
+    }
+    .closing-banner p {
+      max-width: 680px;
+      margin: 0 auto 26px;
+      opacity: 0.92;
+    }
+
+    footer { background: var(--teal2); color: rgba(255,255,255,0.82); padding: 50px 5% 28px; }
+    .footer-top { max-width: 1120px; margin: 0 auto 40px; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+    .footer-brand h3 { font-family: 'Merriweather', serif; color: white; font-size: 1.05rem; margin-bottom: 8px; }
+    .footer-brand .footer-sub { font-size: 0.8rem; opacity: 0.65; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 320px; }
+    .footer-col h4 { color: white; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1120px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; }
+    .footer-bottom a:hover { color: white; }
+
+    @media (max-width: 960px) {
+      .hero-shell,
+      .why-grid,
+      .footer-top { grid-template-columns: 1fr; }
+      .hero-copy-inner { padding-top: 0; }
+      .video-frame { padding-top: 56.25%; }
+      section { padding: 76px 5%; }
+      .giving-hero { padding: 108px 5% 48px; }
+      .hero-copy h1 { font-size: clamp(2rem, 8vw, 3.35rem); }
+      .hero-copy p,
+      .section-sub { font-size: 0.97rem; }
+      .donate-grid {
+        grid-template-columns: 1fr;
+        max-width: 780px;
+        gap: 22px;
+      }
+      .accountability-grid,
+      .voices-grid,
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .help-grid { grid-template-columns: 1fr; }
+      .stat-item { padding: 22px 28px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+    @media (max-width: 640px) {
+      nav {
+        position: sticky;
+        top: 0;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        height: auto;
+        min-height: 64px;
+        padding: 8px 4%;
+      }
+      .nav-logo {
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 8px;
+      }
+      .nav-logo-icon { width: 36px; height: 36px; }
+      .nav-logo-text {
+        min-width: 0;
+        max-width: 180px;
+        font-size: 0.76rem;
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .nav-logo-text span {
+        display: none;
+      }
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        padding: 7px 10px;
+        font-size: 0.74rem;
+      }
+      .nav-toggle { flex: 0 0 auto; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(72,81,74,0.08);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li + li { border-top: 1px solid rgba(72,81,74,0.08); }
+      .nav-links a { display: block; padding: 14px 16px; }
+      .giving-hero { padding: 24px 5% 36px; }
+      section { padding: 64px 5%; }
+      .hero-copy-inner { padding-top: 10px; }
+      .hero-tag {
+        margin-bottom: 14px;
+        padding: 7px 14px;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+      }
+      .hero-copy h1 {
+        font-size: clamp(1.78rem, 9vw, 2.6rem);
+        line-height: 1.03;
+        margin-bottom: 12px;
+      }
+      .nowrap { white-space: normal; }
+      .hero-copy p {
+        font-size: 0.93rem;
+        line-height: 1.65;
+        margin-bottom: 14px;
+      }
+      .hero-points {
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .hero-points li { font-size: 0.91rem; }
+      .hero-points li::before {
+        width: 9px;
+        height: 9px;
+        margin-top: 8px;
+      }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a,
+      .section-actions,
+      .donate-actions { flex-direction: column; }
+      .hero-actions {
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .hero-actions a,
+      .section-actions a,
+      .donate-actions a { width: 100%; text-align: center; }
+      .video-panel { padding: 14px; }
+      .accountability-grid,
+      .voices-grid,
+      .impact-grid { grid-template-columns: 1fr; }
+      .section-sub { margin-bottom: 26px; }
+      .donate-grid { max-width: 100%; gap: 18px; }
+      .donate-copy { padding: 22px 18px; }
+      .donate-copy h3 { font-size: 1.25rem; }
+      .donate-copy p { font-size: 0.93rem; }
+      .form-pointer { margin-left: 0; font-size: 0.9rem; }
+      .embed-shell,
+      .embed-frame dbox-widget { width: 100%; max-width: 100%; }
+      .embed-frame { min-height: 520px; }
+      .embed-frame dbox-widget { border-radius: 14px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html#home" class="nav-logo">
+      <div class="nav-logo-icon"><img src="vlfa-logo.jpg" alt="Valley Learning Foundation of Arizona logo" /></div>
+      <div class="nav-logo-text">
+        Valley Learning Foundation
+        <span>Of Arizona</span>
+      </div>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <ul class="nav-links" id="site-nav">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#studios">Studios</a></li>
+      <li><a href="index.html#approach">Our Approach</a></li>
+      <li><a href="index.html#leadership">Leadership</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="giving-hero" id="top">
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <div class="hero-copy-inner">
+          <div class="hero-tag">Clarity. Care. Accountability.</div>
+          <h1>One Proven Model. <span class="nowrap">No Endowment - Yet.</span></h1>
+          <p>Phoenix Modern proves that learner-centered education works in Central Phoenix. Now we need sustained philanthropic investment to deepen impact, expand access, and build a permanent foundation for the future.</p>
+          <div class="hero-actions">
+            <a href="#give" class="btn-primary">Give Today</a>
+            <a href="#accountability" class="btn-outline">See Our Accountability</a>
+          </div>
+          <ul class="hero-points">
+            <li>$0 tuition cost to families</li>
+            <li>501(c)(3) tax-deductible giving through VLFA</li>
+            <li>100% of gifts go directly to support student programs</li>
+          </ul>
+          <div class="hero-subpanel">
+            <div class="video-panel">
+              <div class="panel-kicker">About Phoenix Modern</div>
+              <div class="video-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/TmiL9xk43uQ"
+                  title="Phoenix Modern video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-band">
+    <div class="stat-item">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Tuition to Families</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Gift-Funded Impact Priorities</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Board Members Providing Oversight</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">K-8</div>
+      <div class="stat-label">Grades Served</div>
+    </div>
+  </div>
+
+  <section id="why-give">
+    <div class="section-inner">
+      <span class="section-label">Why Giving Matters</span>
+      <h2 class="section-title">Moving Beyond Good Enough</h2>
+      <p class="section-sub">Arizona charter schools receive per-pupil funding that covers baseline operations, but closing the gap between adequate and exceptional requires private investment. Your support is what makes the difference between a school that survives and one that changes lives.</p>
+      <div class="why-grid">
+        <div class="story-card">
+          <p>Philanthropic support gives Phoenix Modern room to deliver the kind of learner-centered experience families choose us for: smaller guide-to-student ratios, enrichment programming, stronger family support services, and the freedom to build deeply human learning experiences.</p>
+          <p>The opportunity is not simply to maintain operations, but to strengthen a model that is already serving Central Phoenix and position it for long-term stability. With the right support, Phoenix Modern can deepen its impact now while building the foundation for lasting growth.</p>
+          <div class="section-actions">
+            <a href="#give" class="btn-primary">Give Today</a>
+            <a href="#impact" class="btn-outline" style="color: var(--teal2); border-color: rgba(30,85,82,0.22);">See Where Gifts Go</a>
+          </div>
+        </div>
+        <div class="pull-quote">
+          <strong>The Difference</strong>
+          <p>Your gift helps move Phoenix Modern from baseline public funding toward the full expression of its mission.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="accountability">
+    <div class="section-inner">
+      <span class="section-label">Radical Transparency</span>
+      <h2 class="section-title">Proven Leadership.</h2>
+      <p class="section-sub">We know that serious donors ask serious questions before writing a check. Here is how Valley Learning Foundation of Arizona ensures every dollar is governed, tracked, and deployed with integrity.</p>
+      <div class="accountability-grid">
+        <article class="trust-card">
+          <h3>Independent Board Oversight</h3>
+          <p>Foundation funds are governed by a five-member board with experience in nonprofit finance, charter school operations, and fiduciary management. No single person controls spending decisions.</p>
+        </article>
+        <article class="trust-card">
+          <h3>Annual Audited Financials</h3>
+          <p>As a 501(c)(3) operating under charter authorization, VLFA is subject to annual independent audit, USFR compliance, and Arizona State Board reporting.</p>
+        </article>
+        <article class="trust-card">
+          <h3>Restricted Gift Honoring</h3>
+          <p>Donors may designate gifts to specific programs, family support initiatives, enrichment, or capital needs. Each restricted gift can be acknowledged and reported back to the donor.</p>
+        </article>
+        <article class="trust-card">
+          <h3>Donor Access and Transparency</h3>
+          <p>Major donors receive direct access to school leadership, opportunities to visit the school, and regular impact updates so they can clearly see how their investment is making a difference.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="voices">
+    <div class="section-inner">
+      <span class="section-label">Community Voices</span>
+      <h2 class="section-title">The People This School Was Built to Serve</h2>
+      <p class="section-sub">Every philanthropic investment ultimately lands in the life of a child and their family. These voices reflect what Phoenix Modern means to the community it serves.</p>
+      <div class="voices-grid">
+        <article class="quote-card">
+          <p>"By designing school structures focused on mastery, relationships, and learner agency, Phoenix Modern has created conditions that strengthen student confidence, deepen engagement, and generate strong academic growth."</p>
+          <strong>Arizona Innovation Guide</strong>
+          <span>Community perspective on Phoenix Modern</span>
+        </article>
+        <article class="quote-card">
+          <p>"At Phoenix Modern, not only is the learning done in the most engaging, fun way, but the children are celebrated and loved for their differences."</p>
+          <strong>Parent of 2nd-grader</strong>
+          <span>Phoenix Modern family voice</span>
+        </article>
+        <article class="quote-card">
+          <p>"Phoenix Modern has been such a special place for our family. As a parent of a kindergartener, it means everything to see my child excited to go to school, feel genuinely cared for, and thrive in a model that honors each child's pace, growth, and individuality."</p>
+          <strong>DJ Tiwari</strong>
+          <span>Parent of Kindergartener</span>
+        </article>
+        <article class="quote-card">
+          <p>"Phoenix Modern has been life changing for our child. The school's thoughtful, creative model and deep focus on social-emotional growth have given him a safe place where he feels supported, celebrated for who he is, and genuinely excited to go to school each day."</p>
+          <strong>Sara Beste</strong>
+          <span>Parent of 2nd-grader</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="section-inner">
+      <span class="section-label">How Gifts Work</span>
+      <h2 class="section-title">Make a Gift That Is Precisely Deployed</h2>
+      <p class="section-sub">Here is how your donation supports Phoenix Modern's mission.</p>
+      <div class="section-actions" style="margin-top: 0; margin-bottom: 34px;">
+        <a href="#give" class="btn-primary">Give Today</a>
+      </div>
+      <div class="impact-grid">
+        <article class="impact-card">
+          <h3>Innovative Programs</h3>
+          <p>Fund hands-on, inquiry-based projects that spark curiosity and give students real-world learning experiences beyond the textbook.</p>
+        </article>
+        <article class="impact-card">
+          <h3>Growth and Transition</h3>
+          <p>Support expansion, student-body growth, and strategic transition work so more Phoenix families can access a reimagined public school experience.</p>
+        </article>
+        <article class="impact-card">
+          <h3>Whole-Child Support</h3>
+          <p>Invest in social-emotional resources, mentoring, family support, and community-building systems that help learners thrive.</p>
+        </article>
+        <article class="impact-card">
+          <h3>Educator Excellence</h3>
+          <p>Help attract and retain exceptional Learning Guides who bring passion, expertise, and steady support to every classroom.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="give">
+    <div class="section-inner">
+      <span class="section-label">Give Through VLFA</span>
+      <h2 class="section-title">Your Gift Precisely Deployed</h2>
+      <p class="section-sub">Phoenix Modern is at a pivotal moment. We are transitioning to Valley Learning Foundation of Arizona, growing our student body, and building the physical campus and operational foundation our learners deserve.</p>
+      <div class="donate-grid">
+        <div class="donate-copy">
+          <span class="eyebrow">Give with Confidence</span>
+          <h3>Invest in the next chapter of Phoenix Modern</h3>
+          <p>Your gift helps strengthen a learner-centered public school model that is already changing lives in Central Phoenix. Donor support creates the stability, capacity, and long-term foundation needed for more families to experience this kind of education.</p>
+          <div class="donate-actions">
+            <a href="https://donorbox.org/phoenix-modern-transition-growth-fund" class="btn-primary">Donate on Donorbox</a>
+            <div class="form-pointer">
+              <span>or give right here</span>
+              <span class="arrow">&#8594;</span>
+            </div>
+          </div>
+        </div>
+        <div class="embed-shell">
+          <div class="embed-frame">
+            <dbox-widget campaign="phoenix-modern-transition-growth-fund" type="donation_form" interval="1 M" amount="50" enable-auto-scroll="true"></dbox-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="other-ways">
+    <div class="section-inner">
+      <span class="section-label">More Ways to Help</span>
+      <h2 class="section-title">Support the Mission Beyond a Financial Gift</h2>
+      <p class="section-sub">Support our mission beyond a financial gift.</p>
+      <div class="help-grid">
+        <article class="help-card">
+          <h3>Corporate Match</h3>
+          <p>Many employers match charitable donations. Encourage supporters to check with their HR team and multiply the impact of every gift.</p>
+        </article>
+        <article class="help-card">
+          <h3>Volunteer</h3>
+          <p>Invite community members to share time and talent, whether through classroom support, event help, or specialized expertise.</p>
+        </article>
+        <article class="help-card">
+          <h3>Spread the Word</h3>
+          <p>Make it easy for advocates to tell friends, colleagues, and community partners about Phoenix Modern and its mission.</p>
+        </article>
+      </div>
+      <div class="section-actions">
+        <a href="mailto:ValleylearningfoundationofAZ@gmail.com?subject=Supporting%20Phoenix%20Modern" class="btn-primary">Contact Us to Help</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing-banner">
+    <h2>Build what learners in Central Phoenix deserve.</h2>
+    <p>Your generosity helps protect a learner-centered public school model and gives Phoenix Modern the capacity to deepen its impact for years to come under the stewardship of Valley Learning Foundation of Arizona.</p>
+    <a href="#give" class="btn-primary">Give Today</a>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Valley Learning Foundation of Arizona</h3>
+        <div class="footer-sub">Of Arizona &middot; 501(c)(3) Nonprofit</div>
+        <p>Valley Learning Foundation of Arizona supports schools and students through thoughtful stewardship, strong governance, and a commitment to lasting community impact. Through this giving page, donors can directly support Phoenix Modern and the learners it serves.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#about">About &amp; Mission</a></li>
+          <li><a href="index.html#philosophy">Our Philosophy</a></li>
+          <li><a href="index.html#studios">Learning Studios</a></li>
+          <li><a href="index.html#approach">Our Approach</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#give">Give Today</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="mailto:discover@phoenixmodern.org">discover@phoenixmodern.org</a></li>
+          <li><a href="mailto:ValleylearningfoundationofAZ@gmail.com">VLFA Foundation</a></li>
+          <li><a href="index.html#contact">Schedule a Tour</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Valley Learning Foundation of Arizona &middot; Phoenix Modern Charter School. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="#">ASBCS Authorized</a> &nbsp;&middot;&nbsp;
+        <a href="#">200 E Mitchell Dr, Phoenix AZ 85012</a>
+      </span>
+    </div>
+  </footer>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
+  <script type="module" src="https://donorbox.org/widgets.js" async></script>
+</body>
+</html>
